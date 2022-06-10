@@ -17,7 +17,7 @@ function App() {
   },[])
 
   useEffect(()=>{
-    console.log(todoList);
+    
   },[todoList])
   
   const getTodos = () => {
@@ -42,6 +42,8 @@ function App() {
     .catch((error) => console.error(error.message))
   }
 
+  
+
   return (
     <div className="wrap">
       <div className="header">
@@ -60,7 +62,7 @@ function App() {
           </button>
         </form>
       </div>
-        <TodoBoard todoList={todoList}/>
+        <TodoBoard todoList={todoList} getTodos={getTodos}/>
     </div>
 
     

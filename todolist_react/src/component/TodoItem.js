@@ -1,15 +1,31 @@
-import React from "react";
+import { React } from "react";
+import axios from 'axios';
 import '../App.css';
 
 
 function TodoItem(props){
 
+  let isChecked = props.item.complete ? true : false;
+
+  const toggleComplete = ()=>{
+    props.item.complete = !props.item.complete
+    
+    let complete = props.item.complete
+
+    axios.patch(`http://localhost:3001/todos/${props.item.id}`, {'complete':complete})
+    .then(props.getTodos)
+    .catch((error)=>{console.error(error)})
+
+  }
+  
   return(
     <div className="item">
       <div className="content">
         <input
           type="checkbox"
           className='todo_checkbox'
+          checked = {isChecked}
+          onClick={toggleComplete}
         />
         <label>{props.item.content}</label>
         <input type="text" value={props.item.content} />
