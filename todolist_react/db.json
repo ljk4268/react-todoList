@@ -1,24 +1,19 @@
 {
   "todos": [
     {
-      "content": "웹개발 공부하기",
-      "complete": true,
+      "content": "웹개발",
+      "complete": false,
       "id": 1
     },
     {
       "content": "PT가기",
-      "complete": true,
+      "complete": false,
       "id": 2
     },
     {
       "content": "히히",
       "complete": false,
       "id": 3
-    },
-    {
-      "content": "dfdfdfd",
-      "complete": false,
-      "id": 4
     }
   ]
 }
