@@ -21,7 +21,7 @@ function TodoItem(props){
   // current 왜 쓰는지 
   // 동작 순서 다시 
   // input value(=useState) onChange 셋트
-
+  //
 
   const editInput = useRef()
   const label = useRef()
@@ -29,7 +29,6 @@ function TodoItem(props){
   let [changeInput, setChangeInput] = useState ({'display': 'none'})
   let [contentButtons, setContentButtons] = useState ({'display': 'block'})
   let [editButtons, setEditButtons] = useState ({'display': 'none'})
-  let [editButtonState, setEditButtonState] = useState ('')
   let [editText, setEditText] = useState('')
 
 
@@ -40,10 +39,8 @@ function TodoItem(props){
     // changeInput = setChangeInput({'display' : 'block'});
     contentButtons = setContentButtons({'display': 'none'});
     editButtons = setEditButtons({'display' : 'block'});
-    editButtonState = setEditButtonState('수정')
-    editInput.current.focus()
-    setEditText(props.item.content)
-    
+    editInput.current.focus();
+    setEditText(props.item.content);
   }
   
   const cancelEditMode = ()=>{
@@ -52,7 +49,6 @@ function TodoItem(props){
     // changeInput = setChangeInput({'display' : 'none'});
     contentButtons = setContentButtons({'display': 'block'});
     editButtons = setEditButtons({'display' : 'none'});
-    editInput.current.value = label.current.innerText
   }
   
   const onChangeEdit = (e)=>{
@@ -65,15 +61,16 @@ function TodoItem(props){
     // changeInput = setChangeInput({'display' : 'none'});
     contentButtons = setContentButtons({'display': 'block'});
     editButtons = setEditButtons({'display' : 'none'});
-    label.current.innerText = ''
+    // label.current.innerText = ''
+    label.current.innerText = editInput.current.value
   
 }
 
   const editTodo = ()=>{
 
     axios.patch(`http://localhost:3001/todos/${props.item.id}`, {"content": editText})
-    .then(props.getTodos)
     .then(changeUi) 
+    .then(props.getTodos)
     .catch((error)=>{console.error(error)})
 
   }
